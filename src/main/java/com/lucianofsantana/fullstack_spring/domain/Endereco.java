@@ -3,6 +3,10 @@ package com.lucianofsantana.fullstack_spring.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,16 +27,18 @@ public class Endereco implements Serializable{
 	private String logradouro;
 	private String numero;
 	private String complemento;
-	private String bairro;
 	private String cep;
+	private String bairro;
 	
-	@ManyToOne
-	@JoinColumn(name = "cliente_id")
-	private Cliente cliente;
 	
 	@ManyToOne
 	@JoinColumn(name = "cidade_id")
 	private Cidade cidade;
+	
+	@ManyToOne
+	@JoinColumn(name = "cliente_id")
+	@JsonBackReference
+	private Cliente cliente;
 	
 	public Endereco() {}
 
@@ -97,11 +103,11 @@ public class Endereco implements Serializable{
 		this.cep = cep;
 	}
 
-	public Cliente getCliete() {
+	public Cliente getCliente() {
 		return cliente;
 	}
 
-	public void setCliete(Cliente cliente) {
+	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 
