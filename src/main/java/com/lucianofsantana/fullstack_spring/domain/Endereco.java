@@ -3,8 +3,7 @@ package com.lucianofsantana.fullstack_spring.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,7 +35,7 @@ public class Endereco implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
-	@JsonBackReference
+	@JsonIgnore
 	private Cliente cliente;
 	
 	public Endereco() {}
