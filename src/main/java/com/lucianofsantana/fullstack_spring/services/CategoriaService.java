@@ -25,4 +25,9 @@ public class CategoriaService {
 		return obj.orElse(null);
 	}
 	
+	public Categoria insert(Categoria obj) {
+		obj.setId(null); //garante que seja inserção
+		return repo.save(obj);
+	}
+	
 }
